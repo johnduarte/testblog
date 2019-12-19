@@ -1,24 +1,16 @@
 language: ruby
 rvm:
-  - 2.5
-
-# Assume bundler is being used, therefore
-# the `install` step will run `bundle install` by default.
-script: ./script/cibuild
-
+- 2.5
+script: "./script/cibuild"
 env:
   global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
-
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: Yz2qr1ov4KWqfWOuNugE/T89BqGlGoTlSxjg6rDUvttvSskTeC1Sl4wkYoMI9mWb7POcswPhZD7IMwSRIIFSbRJ9CZqC0ueUNOHU2TaDQQJxoGSmebDcUfRlMsMHbRmT9dWTUhSvl934/KkchbsotphPl6ME3g7/eaNsa2sGjnhm4MQDeume3KxblsfuwcRny3eCaYXrZUVqo5WQD46K1QWwIBHLb7eSSKgXVrTEAT50s/b3UJX6Re5iPd8BgHJlcf71VDChSg01ImDyD75KBIJn45q0W+N39Uep2c4SifEPdtKampUFsRplGrhH/51X7GlPTI6UF+btm3oXzK3KzaAfblN9M88tAd6hRGxxvW/C2og0lEEyTSWw/l3PkuU1HenLUgyLg/vfbCIumHeryV0UQG70BPqHjD0cF5yyMh3tIj33QBFRf011bdCcBdcQp29jze7mICposl/AvIv5WhI/xus//PnaaKnh10MZmkjp2qmrec02G1uHEEv5lNDtm2lbauHQAPi5UGOsKNGTNHFwN+gzll1P8Mj/3cneecFicfa8p2oUtyLZqpZZ8mqZkSDYG/W0hVM00BcfaKL/V5pc3tP8iZ2/fpnnaMdkEsswvz6F6BzAtUHr03y8/Qj+5mDd7hzVAoKwLx4DBfrTP7voezsXlQSTpeOnDZWK5lQ=
 addons:
   apt:
     packages:
     - libcurl4-openssl-dev
-
-sudo: false # route your build to the container-based infrastructure for a faster build
-
-cache: bundler # caching bundler gem packages will speed up build
-
-# Optional: disable email notifications about the outcome of your builds
+sudo: false
+cache: bundler
 notifications:
   email: false

@@ -3,3 +3,10 @@ set -e # halt script on error
 
 bundle exec jekyll build
 bundle exec htmlproofer ./_site
+
+if [ "$SOMEVAR" == "secretvalue" ]
+then
+  echo "SUCCESSFUL encrypt/decrypt"
+else
+  echo "FAILED encrypt/decrypt"
+fi
