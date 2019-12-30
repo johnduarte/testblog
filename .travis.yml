@@ -1,7 +1,6 @@
 language: ruby
 rvm:
 - 2.5
-script: "./script/cibuild"
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -9,9 +8,18 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev
+  ssh_known_hosts:
+    - 138.68.27.163
 sudo: false
 cache: bundler
 notifications:
   email: false
 before_install:
 - openssl aes-256-cbc -K $encrypted_a6749ada6b62_key -iv $encrypted_a6749ada6b62_iv -in blog-deploy-key.enc -out blog-deploy-key -d
+- bash script/install
+before_script:
+- echo -e "Host 138.68.27.163\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script:
+- bash script/cibuild
+after_success:
+- bash script/deploy
